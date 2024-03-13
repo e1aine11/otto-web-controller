@@ -1,1 +1,44 @@
 # otto-web-controller
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Otto机器人控制器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    button {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Otto机器人控制器</h1>
+  <div>
+    <button onclick="sendCommand('/walk/1')">前进</button>
+    <button onclick="sendCommand('/walk/-1')">后退</button>
+  </div>
+  <div>
+    <button onclick="sendCommand('/turn/1')">左移</button>
+    <button onclick="sendCommand('/turn/-1')">右移</button>
+  </div>
+  <div>
+    <button onclick="sendCommand('/dance')">舞蹈</button>
+    <button onclick="sendCommand('/home')">初始站立</button>
+  </div>
+
+  <script>
+    var arduinoIP = "你的Arduino IP地址"; // 替换为你的Arduino IP地址
+
+    function sendCommand(command) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "http://" + arduinoIP + command, true);
+      xhttp.send();
+    }
+  </script>
+</body>
+</html>
